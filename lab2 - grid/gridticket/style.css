@@ -7,11 +7,37 @@
     grid-template-columns: repeat(4, 1fr); 
     grid-template-rows: repeat(3, 1fr); 
     padding: .5em;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    height: 350px;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 4em;
+    letter-spacing: .25em;
+}
+
+h2 {
+    font-weight: lighter;
+    font-size: smaller;
+    letter-spacing: .25em;
+    margin-top: 3em;
+    margin-bottom: -2em;
+}
+
+strong {
+    font-size: x-large;
 }
 
 div div {
     border-top: 1px solid black;
     border-left: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .title {
@@ -39,4 +65,7 @@ div div {
     grid-area: 1 / 4 / 4 / 5;
     border-bottom: 1px solid black;
     border-right: 1px solid black;
+}
+.ticket p {
+    font-size: x-large;
 }
