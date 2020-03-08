@@ -37,13 +37,18 @@ class Note {
 
 class App {
   constructor() {
-    console.log("👊🏼 The Constructor!");
 
     // HINT🤩
     // clicking the button should work
     // pressing the enter key should also work
     this.btnAdd = document.querySelector("#btnAddNote");
     this.btnAdd.addEventListener("click", this.createNote.bind(this));
+    document.addEventListener("keyup", (e) => {
+      if (e.key == "Enter") {
+        e.preventDefault();
+        this.btnAdd.click();
+      }
+    });
     // this.loadNotesFromStorage();
   }
   
