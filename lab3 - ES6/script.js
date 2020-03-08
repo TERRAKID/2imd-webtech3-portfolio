@@ -43,7 +43,7 @@ class App {
     // pressing the enter key should also work
     this.btnAdd = document.querySelector("#btnAddNote");
     this.btnAdd.addEventListener("click", this.createNote.bind(this));
-    document.addEventListener("keyup", (e) => {
+    document.addEventListener("keydown", (e) => {
       if (e.key == "Enter") {
         e.preventDefault();
         this.btnAdd.click();
