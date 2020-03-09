@@ -48,6 +48,10 @@ class Note {
     // HINT🤩 the meaning of 'this' was set by bind() in the createElement function
     // in this function, 'this' will refer to the current note element
     this.remove();
+    let notes = JSON.parse(localStorage.getItem("notes"));
+    let index = notes.indexOf(this.childNodes[0].innerHTML);
+    notes.splice(index, 1);
+    localStorage.setItem("notes", JSON.stringify(notes));
   } 
 }
 
