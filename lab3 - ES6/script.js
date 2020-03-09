@@ -10,9 +10,14 @@ class Note {
 
     let newP =  document.createElement("p");
     newP.innerHTML = title;
-
     newNote.appendChild(newP);
-    // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
+
+    let newA = document.createElement("a");
+    newA.setAttribute("class", "card-remove");
+    newA.setAttribute("href", "#");
+    newA.innerHTML = "Remove";
+    newA.addEventListener('click', this.remove.bind(newNote));
+    newNote.appendChild(newA);
     
     return newNote;
   }
