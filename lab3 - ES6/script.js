@@ -39,7 +39,7 @@ class Note {
     } else {
       notes = JSON.parse(notes);
     }
-    
+
     notes.push(this.title);
     localStorage.setItem("notes", JSON.stringify(notes));
   }
@@ -65,13 +65,19 @@ class App {
         this.btnAdd.click();
       }
     });
-    // this.loadNotesFromStorage();
+    this.loadNotesFromStorage();
   }
   
   loadNotesFromStorage() {
     // HINT🤩
     // load all notes from storage here and add them to the screen
     // something like note.add() in a loop would be nice
+    let notes = JSON.parse(localStorage.getItem("notes"));
+    for (let index = 0; index < notes.length; index++) {
+      const text = notes[index];
+      let note = new Note(text);
+      note.add();
+    }
   }
    
   createNote(e){
