@@ -15,7 +15,18 @@ class App {
     gotLocation(result) {
         this.lat = result.coords.latitude;
         this.lng = result.coords.longitude;
-        console.log(this.lat);
+        this.getWeather();
+    }
+
+    getWeather() {
+        let url = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/88e2dc8f07f9ca72acbdeec64399381c/${this.lat},${this.lng}?units=si`
+        fetch(url).then(response => {
+            return response.json();
+        }).then(data => {
+            console.log(data);
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     errorLocation(err) {
