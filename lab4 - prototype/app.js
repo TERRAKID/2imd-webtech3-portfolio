@@ -25,8 +25,7 @@ class App {
         }).then(data => {
             let precipType = data.currently.precipType;
             let precipIntensity = data.currently.precipIntensity;
-            let raining = this.isRaining(precipType, precipIntensity);
-            console.log(raining);
+            sessionStorage.raining = this.isRaining(precipType, precipIntensity);
         }).catch(err => {
             console.log(err);
         });
