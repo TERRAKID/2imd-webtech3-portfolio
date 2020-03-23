@@ -23,7 +23,8 @@ class App {
         fetch(url).then(response => {
             return response.json();
         }).then(data => {
-            console.log(data);
+            let precipType = data.currently.precipType;
+            let precipIntensity = data.currently.precipIntensity;
         }).catch(err => {
             console.log(err);
         });
