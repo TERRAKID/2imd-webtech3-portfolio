@@ -1,8 +1,12 @@
 class App {
     constructor() {
-        this.getLocation();
-        this.lat;
-        this.lng;
+        if (!((sessionStorage.raining === "true") || (sessionStorage.raining === "false"))) {
+            this.lat;
+            this.lng;
+            this.getLocation();
+        } else {
+            this.setText();
+        }
     }
 
     getLocation() {
