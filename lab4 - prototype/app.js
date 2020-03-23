@@ -25,9 +25,19 @@ class App {
         }).then(data => {
             let precipType = data.currently.precipType;
             let precipIntensity = data.currently.precipIntensity;
+            let raining = this.isRaining(precipType, precipIntensity);
+            console.log(raining);
         }).catch(err => {
             console.log(err);
         });
+    }
+
+    isRaining(precipType, precipIntensity) {
+        if (precipType === 'rain' && precipIntensity >  2.5) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     errorLocation(err) {
