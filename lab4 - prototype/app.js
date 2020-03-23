@@ -26,6 +26,7 @@ class App {
             let precipType = data.currently.precipType;
             let precipIntensity = data.currently.precipIntensity;
             sessionStorage.raining = this.isRaining(precipType, precipIntensity);
+            this.setText();
         }).catch(err => {
             console.log(err);
         });
@@ -36,6 +37,16 @@ class App {
             return true;
         } else {
             return false;
+        }
+    }
+
+    setText() {
+        if (sessionStorage.raining === "true") {
+            document.querySelector(".slogan-1").innerHTML = "Regent het buiten?";
+            document.querySelector(".slogan-2").innerHTML = "Ga naar de zon!";
+        } else {
+            document.querySelector(".slogan-1").innerHTML = "Te droog buiten?";
+            document.querySelector(".slogan-2").innerHTML = "Laat het regenen!";
         }
     }
 
