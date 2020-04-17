@@ -1,73 +1,88 @@
-const getAll = (req, res) => {
-    res.json({
-        "status": "success",
-        "data": {
-            "message": "Homepage"
-        }
-    });
-}
-
-const getMessages = (req, res) => {
-    res.json({
-        "status": "success",
-        "data": {
-            "message": "GETTING messages"
-        }
-    });
-}
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const messagesSchema = new Schema({
+    text: String,
+    user: String,
+});
+const Message = mongoose.model('Message', messagesSchema);
 
 const getMessagesId = (req, res) => {
-    res.json({
-        "status": "success",
-        "data": {
-            "message": "GETTING message with ID :id"
+    let id = req.params.id;
+    Message.find({_id: id}, (err, doc) => {
+        if (!err) {
+            res.json({
+                "status": "success",
+                "data": {
+                    "message": doc
+                }
+            });
         }
-    });
+    })
 }
 
 const postMessages = (req, res) => {
-    res.json({
-        "status": "success",
-        "data": {
-            "message": {
-                "user": "Pikachu",
-                "text": "nodejs isn’t hard, or is it?"
-            }
+    let message = new Message();
+    message.text = "nodejs isn’t hard, or is it?";
+    message.user = "Pikachu";
+    message.save((err, doc) => {
+        if (!err) {
+            res.json({
+                "status": "success",
+                "data": {
+                    "message": doc
+                }
+            });
         }
-    });
+    })
 }
 
 const putMessagesId = (req, res) => {
-    res.json({
-        "status": "success",
-        "data": {
-            "message": "UPDATING a message with id :id"
+    let id = req.params.id;
+    let text = "update";
+    Message.findByIdAndUpdate({_id: id}, {text: text}, (err, doc) => {
+        if (!err) {
+            res.json({
+                "status": "success",
+                "data": {
+                    "message": "Updated message",
+                    "text": text
+                }
+            }); 
         }
-    });
+    })
 }
 
 const deleteMessagesId = (req, res) => {
-    res.json({
-        "status": "success",
-        "data": {
-            "message": "DELETING a message with id :id"
+    let id = req.params.id;
+    Message.findByIdAndDelete({_id: id}, (err, doc) => {
+        if (!err) {
+            res.json({
+                "status": "success",
+                "data": {
+                    "message": "The message was removed"
+                }
+            });
         }
-    });
+    })
 }
 
-const getMessagesUser = (req, res) => {
-    res.json({
-        "status": "success",
-        "data": {
-            "message": "GETTING message for username :username"
+const getMessagesAll = (req, res) => {
+    let user = req.query.user;
+    Message.find({user: user}, (err, doc) => {
+        if (!err) {
+            res.json({
+                "status": "success",
+                "data": {
+                    "message": doc,
+                    "user": user
+                }
+            });
         }
-    });
+    })
 }
 
-module.exports.getAll = getAll;
-module.exports.getMessages = getMessages;
 module.exports.getMessagesId = getMessagesId;
 module.exports.postMessages = postMessages;
 module.exports.putMessagesId = putMessagesId;
 module.exports.deleteMessagesId = deleteMessagesId;
-module.exports.getMessagesUser = getMessagesUser;
+module.exports.getAll = getMessagesAll;
