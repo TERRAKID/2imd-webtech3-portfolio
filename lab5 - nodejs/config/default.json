@@ -1,5 +1,5 @@
 {
     "Database": {
-        "conn": "mongodb://localhost:27017/messagesApp"
+        "conn": "mongodb+srv://Messageapp:%5E7gqfXBba%237%2A@cluster0-gvep8.mongodb.net/test?retryWrites=true&w=majority"
     }
 }
