@@ -10,6 +10,6 @@ router.put("/:id", messagesController.putMessagesId);
 
 router.delete("/:id", messagesController.deleteMessagesId);
 
-router.get("", messagesController.getMessagesUser);
+router.get("", messagesController.getMessagesAll);
 
 module.exports = router;

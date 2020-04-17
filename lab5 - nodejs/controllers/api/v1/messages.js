@@ -85,4 +85,4 @@ module.exports.getMessagesId = getMessagesId;
 module.exports.postMessages = postMessages;
 module.exports.putMessagesId = putMessagesId;
 module.exports.deleteMessagesId = deleteMessagesId;
-module.exports.getAll = getMessagesAll;
+module.exports.getMessagesAll = getMessagesAll;

@@ -3,13 +3,14 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const config = require('config');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiMessagesRouter = require('./routes/api/v1/messages');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/messagesApp', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.dbconn || config.get('Database.conn'), {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 const app = express();
 
