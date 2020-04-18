@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const messagesSchema = new Schema({
     text: String,
-    user: String,
+    user: String
 });
 const Message = mongoose.model('Message', messagesSchema);
 
 const getMessagesId = (req, res) => {
     let id = req.params.id;
-    Message.find({_id: id}, (err, doc) => {
+    Message.findById(id, (err, doc) => {
         if (!err) {
             res.json({
                 "status": "success",
@@ -39,7 +39,7 @@ const postMessages = (req, res) => {
 const putMessagesId = (req, res) => {
     let id = req.params.id;
     let text = "update";
-    Message.findByIdAndUpdate({_id: id}, {text: text}, (err, doc) => {
+    Message.findByIdAndUpdate(id, {text: text}, (err, doc) => {
         if (!err) {
             res.json({
                 "status": "success",
@@ -54,7 +54,7 @@ const putMessagesId = (req, res) => {
 
 const deleteMessagesId = (req, res) => {
     let id = req.params.id;
-    Message.findByIdAndDelete({_id: id}, (err, doc) => {
+    Message.findByIdAndDelete(id, (err, doc) => {
         if (!err) {
             res.json({
                 "status": "success",
@@ -68,17 +68,30 @@ const deleteMessagesId = (req, res) => {
 
 const getMessagesAll = (req, res) => {
     let user = req.query.user;
-    Message.find({user: user}, (err, doc) => {
-        if (!err) {
-            res.json({
-                "status": "success",
-                "data": {
-                    "message": doc,
-                    "user": user
-                }
-            });
-        }
-    })
+    if (user) {
+        Message.find({user: user}, (err, doc) => {
+            if (!err) {
+                res.json({
+                    "status": "success",
+                    "data": {
+                        "message": doc,
+                        "user": user
+                    }
+                });
+            }
+        })
+    } else {
+        Message.find({}, (err, doc) => {
+            if (!err) {
+                res.json({
+                    "status": "success",
+                    "data": {
+                        "message": doc
+                    }
+                });
+            }
+        })
+    }
 }
 
 module.exports.getMessagesId = getMessagesId;
