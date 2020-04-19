@@ -23,7 +23,7 @@ const getMessagesId = (req, res) => {
 const postMessages = (req, res) => {
     let message = new Message();
     message.text = "nodejs isn’t hard, or is it?";
-    message.user = "Pikachu";
+    message.user = "pikachu";
     message.save((err, doc) => {
         if (!err) {
             res.json({
