@@ -7,9 +7,12 @@ const statSchema = new Schema({
     },
     cases: {
         type: Number,
-        required: true
+        required: true,
+        min: 0
     }
 });
+
+mongoose.set('runValidators', true);
 
 const Stat = mongoose.model('Stat', statSchema);
 
