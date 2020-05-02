@@ -10,7 +10,7 @@ const usersRouter = require('./routes/users');
 const apiStatsRouter = require('./routes/api/v1/stats');
 
 const mongoose = require('mongoose');
-mongoose.connect(config.get('Database.conn'), {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.dbconn || config.get('Database.conn'), {useNewUrlParser: true, useUnifiedTopology: true});
 
 const app = express();
 

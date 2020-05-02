@@ -1,4 +1,4 @@
-let base_url = "http://localhost:3000";
+let base_url = "https://coronaapp-terrakid.herokuapp.com";
 container = document.querySelector(".card-body");
 
 document.querySelector(".btn").addEventListener("click", (e) => {

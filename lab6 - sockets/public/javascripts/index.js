@@ -1,4 +1,4 @@
-let base_url = "http://localhost:3000";
+let base_url = "https://coronaapp-terrakid.herokuapp.com";
 
 fetch(base_url + "/api/v1/stats").then(result => {
     return result.json();
