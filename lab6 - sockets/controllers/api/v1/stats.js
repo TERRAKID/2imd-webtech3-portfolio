@@ -19,7 +19,7 @@ const getAll = (req, res) => {
 const updateStats = (req, res) => {
     let country = req.body.country;
     let cases = req.body.cases;
-    Stat.findOneAndUpdate({"country" : country}, {"cases" : cases}, (err, doc) => {
+    Stat.findOneAndUpdate({"country" : country}, {"cases" : cases}, { new: true }, (err, doc) => {
         if (!err) {
             res.json({
                 status : "success",

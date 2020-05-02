@@ -36,6 +36,10 @@ document.querySelector(".btn").addEventListener("click", (e) => {
       alert.setAttribute("class", "alert alert-success");
       alert.innerHTML = "The statistic has been successfully updated";
       container.prepend(alert);
+      primus.write({
+        "action": "appendStats",
+        "data": result.data
+      });
     } else {
       let alert = document.createElement("div");
       alert.setAttribute("class", "alert alert-warning");
